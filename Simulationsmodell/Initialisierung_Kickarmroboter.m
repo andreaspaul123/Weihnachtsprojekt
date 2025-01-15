@@ -39,14 +39,14 @@ F_s2  = 3.2e-4;
 %PID-Regler
 %P-Matrix
 P = [1,0;
-     0,1];
+     0,1]*0;
 %D-Matrix
 D = [1,0;
-     0,1];
+     0,1]*0;
 
 %I-Matrix
 I = [1,0;
-     0,1];
+     0,1]*0;
 
 
 %Skalierung des Störsignals

@@ -93,8 +93,8 @@ K0_J_rot_SP2 = jacobian(K0_s_0SP2, y);
 %Bestimmung der Massenmatritzen M1 und M2
 %Notiz: I1, I2 bzgl. körperfestem Koordinatensystem!
 %FRAGE: Brauche ich Trafo I_S_ISP1)?!?! eig nicht oder?
-M1 = m1 * K0_J_trans_SP1.' * K0_J_trans_SP1 + K0_J_rot_SP1.' * T_01(1:3,1:3) * K1_I1 * K0_J_rot_SP1;
-M2 = m2 * K0_J_trans_SP2.' * K0_J_trans_SP2 + K0_J_rot_SP2.' * T_02(1:3,1:3) * K2_I2 * K0_J_rot_SP2;
+M1 = m1 * K0_J_trans_SP1.' * K0_J_trans_SP1 + K0_J_rot_SP1.' * T_01(1:3,1:3) * K1_I1 * T_01(1:3,1:3).' * K0_J_rot_SP1;
+M2 = m2 * K0_J_trans_SP2.' * K0_J_trans_SP2 + K0_J_rot_SP2.' * T_02(1:3,1:3) * K2_I2 * T_02(1:3,1:3).' * K0_J_rot_SP2;
 
 %Gesamte Massenmatrix ist die Summe
 M = M1 + M2;
