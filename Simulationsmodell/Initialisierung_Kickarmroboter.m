@@ -15,7 +15,7 @@ close all;
 %es muss t_a=t_ gelten
 
 %Anfangsbedingung im state space
-x0 = [0; 0; 0; 0];  %[y; y_dot]
+x0 = [-2.5658; 0.2465; 0; 0];  %[y; y_dot]
 
 %System Parameter
 %I1, I2 in Modell Function selbst definiert
@@ -39,16 +39,16 @@ F_s2  = 3.2e-4;
 %PID-Regler
 %P-Matrix
 P = [1,0;
-     0,1]*0;
+     0,1]*1;
 %D-Matrix
 D = [1,0;
-     0,1]*0;
+     0,1]*1;
 
 %I-Matrix
 I = [1,0;
-     0,1]*0;
+     0,1]*1;
 
 
 %Skalierung des Störsignals
-tau_delta_alpha = 1;
-tau_delta_beta  = 1;
+tau_delta_alpha = 0.4;
+tau_delta_beta  = 0.4;
