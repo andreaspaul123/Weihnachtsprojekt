@@ -11,6 +11,9 @@ close all;
 %% TEILAUFGABE a): 
 %Wahl geeigneter Verallgemeinerter Koordinaten
 
+windows_ = ~(isunix);
+addpath(genpath('Systemmatrizen'))
+
 %Verallgemeinerte Koordinaten:
 syms alpha beta alpha_dot beta_dot alpha_ddot beta_ddot
 
@@ -144,14 +147,22 @@ end
 G = jacobian(U, y).';
 
 %Erstellen von Matlab Funktionen für die Teile der Bewegungsgleichungen
+if windows_
 matlabFunction(M,'File', 'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\DynimakMatritzen\calc_M', ...
     'Vars', {y, sys_param});
-
 matlabFunction(D,'File', 'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\DynimakMatritzen\calc_D', ...
     'Vars', {y, y_dot, sys_param});
-
 matlabFunction(G,'File', 'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\DynimakMatritzen\calc_G', ...
     'Vars', {y, sys_param});
-
 matlabFunction(tau_R,'File', 'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\DynimakMatritzen\calc_tau_R', ...
     'Vars', {y, y_dot, sys_param, reib_param});
+else
+matlabFunction(M,'File', 'Systemmatrizen/DynimakMatritzen/calc_M', ...
+    'Vars', {y, sys_param});
+matlabFunction(D,'File', 'Systemmatrizen/DynimakMatritzen/calc_D', ...
+    'Vars', {y, y_dot, sys_param});
+matlabFunction(G,'File', 'Systemmatrizen/DynimakMatritzen/calc_G', ...
+    'Vars', {y, sys_param});
+matlabFunction(tau_R,'File', 'Systemmatrizen/DynimakMatritzen/calc_tau_R', ...
+    'Vars', {y, y_dot, sys_param, reib_param});
+end

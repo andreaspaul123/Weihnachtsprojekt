@@ -8,6 +8,8 @@ clear;
 close all;
 clc;
 
+windows_ = ~(isunix);
+
 %vom Endeffektor anzusteuernde Positionen aus Aufgabenstellung
 I_pEF_0 = [0; -0.228; 0];
 I_pEF_d = [4*sqrt(6) - 4*sqrt(2) - 10; -4*sqrt(6) - 4*sqrt(2) - 10*sqrt(3)   ; 0]*(1/125); %in m
@@ -31,9 +33,13 @@ r_des_ddot = [2*p_x(3) + 6*p_x(4)*t;
 
 trajektorie = [r_des; 0; r_des_dot; 0; r_des_ddot; 0];
 
+if windows_
 matlabFunction(trajektorie,'File', ...
     'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\Trajektorien\calc_Trajektorie_kartesisch','Vars', {t});
-
+else
+matlabFunction(trajektorie,'File', ...
+    'Systemmatrizen/Trajektorien/calc_Trajektorie_kartesisch','Vars', {t});
+end
 
 
 %HILFSFUNTIONEN

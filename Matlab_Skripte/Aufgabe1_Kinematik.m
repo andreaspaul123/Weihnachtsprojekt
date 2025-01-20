@@ -9,6 +9,8 @@ clear;
 close all;
 %Transformationsmatrizen für die Kinematik des Roboters
 
+windows_ = ~(isunix);
+
 %Verallgemeinerte Koordinaten:
 syms alpha beta
 
@@ -26,8 +28,13 @@ T_01 = [sin(alpha), -cos(alpha), 0, 0;
         0,           0,          1, 0;
         0,           0,          0, 1];
 
+if windows_
 matlabFunction(T_01,'File', 'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\forwardKinematics\calc_T_01', ...
                'Vars', {y,l1,l2});
+else
+matlabFunction(T_01,'File', 'Systemmatrizen/forwardKinematics/calc_T_01', ...
+               'Vars', {y,l1,l2});
+end
 
 T_12_trans = [1, 0, 0, l1;
               0, 1, 0, 0;
@@ -43,8 +50,13 @@ T_12 = T_12_trans * T_12_rot;
 
 T_02 = T_01 * T_12;
 
+if windows_
 matlabFunction(T_02,'File', 'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\forwardKinematics\calc_T_02', ...
                'Vars', {y,l1,l2});
+else
+matlabFunction(T_02,'File', 'Systemmatrizen/forwardKinematics/calc_T_02', ...
+               'Vars', {y,l1,l2});
+end
 
 T_23 = [1, 0, 0, l2;
         0, 1, 0, 0;
@@ -56,8 +68,13 @@ T_0EF = T_01 * T_12 * T_23;  %POSE Endeffektor
 disp('T_0EF = ');
 disp(T_0EF);
 
+if windows_
 matlabFunction(T_0EF,'File', 'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\forwardKinematics\calc_T_0EF', ...
                'Vars', {y,l1,l2});
+else
+matlabFunction(T_0EF,'File', 'Systemmatrizen/forwardKinematics/calc_T_0EF', ...
+               'Vars', {y,l1,l2});
+end
 
 %-------------------------------------------------------------------------------------%
 %Man kann die symbolic Toolbox nicht in Simulink verwenden...
@@ -85,7 +102,14 @@ for i = 1:size(J, 1)
 end
 
 %Exportieren als Funktionen
+if windows_
 matlabFunction(J,'File', 'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\forwardKinematics\calc_J', ...
                'Vars', {y, l1, l2});
 matlabFunction(J_dot,'File', 'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\forwardKinematics\calc_J_dot', ...
                'Vars', {y, y_dot, l1, l2});
+else
+matlabFunction(J,'File', 'Systemmatrizen/forwardKinematics/calc_J', ...
+               'Vars', {y, l1, l2});
+matlabFunction(J_dot,'File', 'Systemmatrizen/forwardKinematics/calc_J_dot', ...
+               'Vars', {y, y_dot, l1, l2});
+end
