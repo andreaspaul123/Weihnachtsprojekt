@@ -67,8 +67,8 @@ K0_r_SP1 = T_0SP1(1:3, 4);
 %Orienteirung des Schwerpunktes des Körpers 1:
 %Notiz: Berechnung im körperfesten Koordinatensystem, s.d. Trägheitsmoment = konst.
 K1_s_0SP1 = [alpha; 0; 0];
-K0_s_0SP1 = T_01(1:3,1:3) * K1_s_0SP1;
-
+% K0_s_0SP1 = T_01(1:3,1:3) * K1_s_0SP1;
+K0_s_0SP1 = K1_s_0SP1;
 %Position des Schwerpunktes des Körpers 2:
 T_2SP2 =     [1, 0, 0, l2/2;
               0, 1, 0, 0;
@@ -82,9 +82,10 @@ K0_r_SP2 = T_0SP2(1:3, 4);
 
 %Orienteirung des Schwerpunktes des Körpers 2:
 %Notiz: Berechnung im körperfesten Koordinatensystem, s.d. Trägheitsmoment = konst.
-K2_s_K1SP2 = [beta; 0; 0];
+K1_s_K1SP2 = [beta; 0; 0];
 %Rotationen sind additiv
-K0_s_0SP2 = K0_s_0SP1 + T_02(1:3,1:3) * K2_s_K1SP2;
+%K0_s_0SP2 = K0_s_0SP1 + T_02(1:3,1:3) * K2_s_K1SP2;
+K0_s_0SP2 = K0_s_0SP1 + T_01(1:3,1:3) * K1_s_K1SP2;
 
 %Bestimmung der Jacobi-Matrix
 K0_J_trans_SP1 = jacobian(K0_r_SP1, y);
