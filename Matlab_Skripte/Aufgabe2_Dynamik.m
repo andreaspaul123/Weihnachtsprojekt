@@ -66,7 +66,7 @@ K0_r_SP1 = T_0SP1(1:3, 4);
 
 %Orienteirung des Schwerpunktes des Körpers 1:
 %Notiz: Berechnung im körperfesten Koordinatensystem, s.d. Trägheitsmoment = konst.
-K1_s_0SP1 = [alpha; 0; 0];
+K1_s_0SP1 = [0; 0; alpha];
 % K0_s_0SP1 = T_01(1:3,1:3) * K1_s_0SP1;
 K0_s_0SP1 = K1_s_0SP1;
 %Position des Schwerpunktes des Körpers 2:
@@ -85,7 +85,7 @@ K0_r_SP2 = T_0SP2(1:3, 4);
 K1_s_K1SP2 = [beta; 0; 0];
 %Rotationen sind additiv
 %K0_s_0SP2 = K0_s_0SP1 + T_02(1:3,1:3) * K2_s_K1SP2;
-K0_s_0SP2 = K0_s_0SP1 + T_01(1:3,1:3) * K1_s_K1SP2;
+K0_s_0SP2 = K0_s_0SP1 + [0; 0; beta];
 
 %Bestimmung der Jacobi-Matrix
 K0_J_trans_SP1 = jacobian(K0_r_SP1, y);
@@ -155,7 +155,7 @@ matlabFunction(D,'File', 'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skrip
     'Vars', {y, y_dot, sys_param});
 matlabFunction(G,'File', 'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\DynimakMatritzen\calc_G', ...
     'Vars', {y, sys_param});
-matlabFunction(tau_R,'File', 'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\DynimakMatritzen\calc_tau_R', ...
+matlabFunction(tau_R,'File', 'Systemmatrizen\DynimakMatritzen\calc_tau_R', ...
     'Vars', {y, y_dot, sys_param, reib_param});
 else
 matlabFunction(M,'File', 'Systemmatrizen/DynimakMatritzen/calc_M', ...
