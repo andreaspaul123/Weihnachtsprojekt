@@ -35,7 +35,7 @@ trajektorie = [r_des; 0; r_des_dot; 0; r_des_ddot; 0];
 
 if windows_
 matlabFunction(trajektorie,'File', ...
-    'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\Trajektorien\calc_Trajektorie_kartesisch','Vars', {t});
+    'Matlab_Skripte\Systemmatrizen\Trajektorien\calc_Trajektorie_kartesisch','Vars', {t});
 else
 matlabFunction(trajektorie,'File', ...
     'Systemmatrizen/Trajektorien/calc_Trajektorie_kartesisch','Vars', {t});

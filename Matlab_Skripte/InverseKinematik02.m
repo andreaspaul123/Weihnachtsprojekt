@@ -63,13 +63,11 @@ x0 = [subs(yd(:,1), t, 0); subs(yd_dot(:,1), t, 0)];
 Trajectory = [yd; yd_dot; yd_ddot];
 if windows_
 matlabFunction(Trajectory,'File', ...
-    'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\Trajektorien\calc_Trajektorie_verallg','Vars', {t});
+    'Matlab_Skripte\Systemmatrizen\Trajektorien\calc_Trajektorie_verallg','Vars', {t});
 else
 matlabFunction(Trajectory,'File', ...
     'Systemmatrizen/Trajektorien/calc_Trajektorie_verallg','Vars', {t});
 end
-% matlabFunction(x0,'File', ...
-    % 'D:\MASTER\Semester3\MSM\Weihnachtsprojekt\Matlab_Skripte\Systemmatrizen\Trajektorien\calc_x0','Vars', {t});
 
 %% PLOTS
 

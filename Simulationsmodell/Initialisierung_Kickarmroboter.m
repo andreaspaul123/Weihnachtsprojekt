@@ -50,5 +50,5 @@ I = [1,0;
 
 
 %Skalierung des Störsignals
-tau_delta_alpha = 0.4;
-tau_delta_beta  = 0.4;
+tau_delta_alpha = 0.1;
+tau_delta_beta  = 0.1;
